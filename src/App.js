@@ -6,10 +6,12 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [collapsedIndex, setCollapsedIndex] = useState(null);
+  const [isCollapsed, setIsCollapsed] = useState([false, false, false]);
   const [html, setHtml] = useState("");
   const [css, setCss] = useState("");
   const [js, setJs] = useState("");
   const [srcDoc, setSrcDoc] = useState("");
+  const [sizes, setSizes] = useState([33.333, 33.333, 33.333]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -25,15 +27,38 @@ function App() {
     return () => clearTimeout(timeout);
   }, [html, css, js]);
 
+  const handleResize = (sizes) => {
+    setCollapsedIndex(null);
+    console.log(sizes);
+    setIsCollapsed((prev) => {
+      const newIsCollapsed = [false, false, false];
+      if (sizes[0] < 17) newIsCollapsed[0] = true;
+      if (sizes[1] < 17) newIsCollapsed[1] = true;
+      if (sizes[2] < 20) newIsCollapsed[2] = true;
+      return newIsCollapsed;
+    });
+  };
+
   return (
     <Split
       direction="vertical"
       sizes={[60, 40]}
-      minSize={[10, 10]}
+      minSize={[50, 5]}
       style={{ height: "100vh" }}
     >
-      <Split className="d-flex" collapsed={collapsedIndex}>
+      <Split
+        className="d-flex"
+        sizes={sizes}
+        minSize={[110, 95, 130]}
+        expandToMin={true}
+        collapsed={collapsedIndex}
+        onDragEnd={handleResize}
+      >
         <Editor
+          sizes={sizes}
+          setSizes={setSizes}
+          setIsCollapsed={setIsCollapsed}
+          isCollapsed={isCollapsed}
           index={0}
           setCollapsedIndex={setCollapsedIndex}
           language="xml"
@@ -42,6 +67,10 @@ function App() {
           onChange={setHtml}
         />
         <Editor
+          sizes={sizes}
+          setSizes={setSizes}
+          setIsCollapsed={setIsCollapsed}
+          isCollapsed={isCollapsed}
           index={1}
           setCollapsedIndex={setCollapsedIndex}
           language="css"
@@ -50,10 +79,14 @@ function App() {
           onChange={setCss}
         />
         <Editor
+          sizes={sizes}
+          setSizes={setSizes}
+          setIsCollapsed={setIsCollapsed}
+          isCollapsed={isCollapsed}
           index={2}
           setCollapsedIndex={setCollapsedIndex}
           language="javascript"
-          displayName="JavaSript"
+          displayName="Javascript"
           value={js}
           onChange={setJs}
         />
