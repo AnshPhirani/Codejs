@@ -26,15 +26,31 @@
 .editor__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: hsl(225, 6%, 13%);
   color: white;
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  padding: 0.5rem 0.8rem 0.5rem 1rem;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
 
+.editor__header > button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.1rem;
+  cursor: pointer;
+}
+
 .CodeMirror {
   height: 100% !important;
+  overflow: hidden !important;
+}
+
+.CodeMirror-vscrollbar {
+  overflow: hidden !important;
+  display: none !important;
 }
 
 .editor__codemirror {

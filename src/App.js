@@ -2,21 +2,28 @@ import "./App.css";
 import Editor from "./components/Editor";
 import Preview from "./components/Preview";
 import Split from "react-split";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [collapsedIndex, setCollapsedIndex] = useState(null);
   const [html, setHtml] = useState("");
   const [css, setCss] = useState("");
   const [js, setJs] = useState("");
+  const [srcDoc, setSrcDoc] = useState("");
 
-  const srcDoc = `
-    <html>
-      <body>${html}</body>
-      <style>${css}</style>
-      <script>${js}</script>
-    </html>
-  `;
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSrcDoc(`
+      <html>
+        <body>${html}</body>
+        <style>${css}</style>
+        <script>${js}</script>
+      </html>
+      `);
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [html, css, js]);
 
   return (
     <Split

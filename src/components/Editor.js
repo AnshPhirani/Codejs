@@ -1,6 +1,6 @@
 import React from "react";
 import "./Editor.css";
-import { BiMinus } from "react-icons/bi";
+import { FiMinimize2, FiMaximize2 } from "react-icons/fi";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
 import "codemirror/mode/xml/xml"; // html
@@ -26,8 +26,10 @@ const Editor = (props) => {
             setCollapsedIndex(index);
           }}
           value="O/C"
-          className="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        />
+          className=""
+        >
+          <FiMinimize2 className="minimize" />
+        </button>
       </div>
       <ControlledEditor
         onBeforeChange={handleChange}
