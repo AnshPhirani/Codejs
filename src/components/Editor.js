@@ -26,8 +26,6 @@ const Editor = (props) => {
   }
 
   function handleExpand() {
-    // setCollapsedIndex((index + 1) % 3); // next pane
-    // setCollapsedIndex((index + 2) % 3); // next's next pane
     setCollapsedIndex(null);
 
     setSizes((prev) => {
@@ -46,9 +44,9 @@ const Editor = (props) => {
   function handleCollapse() {
     setCollapsedIndex(index);
     setIsCollapsed((isCollapsed) => {
-      if (isCollapsed.filter((ele) => ele).length == 2) {
+      if (isCollapsed.filter((ele) => ele).length === 2) {
         isCollapsed[index] = true;
-        if (index == 2) isCollapsed[1] = false;
+        if (index === 2) isCollapsed[1] = false;
         else isCollapsed[index + 1] = false;
         setSizes((prev) => {
           prev.unshift(prev.pop());
