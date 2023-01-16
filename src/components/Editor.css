@@ -16,21 +16,24 @@
 }
 
 .editor {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   background-color: hsl(225, 6%, 25%);
   padding: 0.5rem;
 }
 
 .editor__header {
-  position: relative;
+  /* position: relative; */
   display: flex;
   overflow: hidden;
   justify-content: space-between;
   align-items: center;
   background-color: hsl(225, 6%, 13%);
   color: white;
+  min-height: 28px;
+  max-height: 28px;
   font-size: 1rem;
   padding: 0.5rem 0.8rem 0.5rem 1rem;
   border-top-left-radius: 0.5rem;

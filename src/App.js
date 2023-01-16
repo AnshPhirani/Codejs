@@ -56,7 +56,7 @@ function App() {
       direction="vertical"
       sizes={[60, 40]}
       minSize={[50, 5]}
-      style={{ height: "100vh" }}
+      style={{ height: "100%" }}
     >
       <Split
         className="d-flex"
