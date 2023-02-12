@@ -60,7 +60,7 @@ const Editor = (props) => {
   }
 
   return (
-    <div className="editor">
+    <div className="editor" id={`${displayName}-editor`}>
       <div className="editor__header">
         <span>{displayName}</span>
         <button
