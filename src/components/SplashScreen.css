@@ -1,0 +1,53 @@
+.splash__screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(270deg, #737373, #404040, #0d0d0d);
+  background-size: 400% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: 5s ease 0s 1 normal both running bg-pan-left;
+  -webkit-animation: bg-pan-left 5s running both;
+}
+
+#Layer_1 {
+  height: 62px;
+  width: 158.66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cls-1 {
+  fill: #fff;
+  font-family: InkFree, "Ink Free";
+  font-size: 50px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50px, -2.5px);
+}
+
+.cls-1 > tspan {
+  text-align: center;
+}
+
+@-webkit-keyframes bg-pan-left {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes bg-pan-left {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

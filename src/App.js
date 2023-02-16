@@ -1,9 +1,11 @@
 import "./App.css";
 import Editor from "./components/Editor";
 import Preview from "./components/Preview";
+import SplashScreen from "./components/SplashScreen";
 import Split from "react-split";
 import { useState, useEffect } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
+import useSessionStorage from "./hooks/useSessionStorage";
 
 import { Steps } from "intro.js-react";
 // import "intro.js/introjs.css";
@@ -18,6 +20,7 @@ function App() {
     false,
   ]);
   const [isTourEnabled, setIsTourEnabled] = useLocalStorage("tour", true);
+  const [showSplash, setShowSplash] = useSessionStorage("splash", true);
   const [html, setHtml] = useLocalStorage("html", boilerHtml);
   const [css, setCss] = useLocalStorage("css", boilerCSS);
   const [js, setJs] = useLocalStorage("js", boilerJS);
@@ -42,8 +45,6 @@ function App() {
     return () => clearTimeout(timeout);
   }, [html, css, js]);
 
-  useEffect(() => {}, []);
-
   const handleResize = (sizes) => {
     setCollapsedIndex(null);
     console.log(sizes);
@@ -57,42 +58,53 @@ function App() {
     });
   };
 
+  if (showSplash) return <SplashScreen setShowSplash={setShowSplash} />;
+
   return (
     <>
       <Steps
         enabled={isTourEnabled}
         steps={[
           {
-            title: "Hi there!",
+            title: "Hey there!",
             element: "#root",
-            intro: "want a tour of the app?",
+            intro:
+              "I'm super excited to give you a personal VIP tour of Codejs! Get ready to be wowed by its features and capabilities. Let's dive in and explore this amazing app together!",
             tooltipClass: "myTooltipClass",
             highlightClass: "myHighlightClass",
           },
           {
+            title: "Welcome to the HTML code editor!",
             element: "#HTML-editor",
-            intro: "write your html code here",
+            intro:
+              "Here, you can write and customize your HTML body. Just start typing your HTML code right here, and bring your website to life!",
             position: "bottom",
             tooltipClass: "myTooltipClass",
             highlightClass: "myHighlightClass",
           },
           {
+            title: "Ready to add some style to your website?",
             element: "#CSS-editor",
-            intro: "write your css code here",
+            intro:
+              "This is the place to do it! Write your CSS code here and watch your website come alive with custom styles and designs.",
             position: "bottom",
             tooltipClass: "myTooltipClass",
             highlightClass: "myHighlightClass",
           },
           {
+            title: "Bring your website to life with dynamic interactivity!",
             element: "#Javascript-editor",
-            intro: "write your JS code here",
+            intro:
+              "Write your JavaScript code here and watch your site become more engaging and user-friendly.",
             position: "bottom",
             tooltipClass: "myTooltipClass",
             highlightClass: "myHighlightClass",
           },
           {
+            title: "Experience your website like never before!",
             element: ".preview",
-            intro: "preview your code here",
+            intro:
+              "Preview your website as you build it. See HTML, CSS & JS come to life in real-time.",
             position: "top",
             tooltipClass: "myTooltipClass",
             highlightClass: "myHighlightClass",
